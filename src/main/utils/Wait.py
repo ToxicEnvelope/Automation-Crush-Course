@@ -23,7 +23,7 @@ class Wait:
         :param driver -> By Object
     '''
     def wait_until_visible(self, by_obj):
-        logger.info("{} - wait_until_visible : {}".format(__name__, by_obj))
+        logger.critical("{} - wait_until_visible : {}".format(__name__, by_obj))
         try:
             return WebDriverWait(self._driver, 15, 300).until(EC.visibility_of_element_located(by_obj))
         except () as e:
@@ -36,7 +36,7 @@ class Wait:
         :param driver -> By Object
     '''
     def wait_until_clickable(self, by_obj):
-        logger.info("{} - wait_until_clickable : {}".format(__name__, by_obj))
+        logger.critical("{} - wait_until_clickable : {}".format(__name__, by_obj))
         try:
             return WebDriverWait(self._driver, 15, 300).until(EC.element_to_be_clickable(by_obj))
         except () as e:
@@ -49,7 +49,7 @@ class Wait:
         :param driver -> By Object
     '''
     def wait_until_invisible(self, by_obj):
-        logger.info("{} - wait_until_invisible : {}".format(__name__, by_obj))
+        logger.critical("{} - wait_until_invisible : {}".format(__name__, by_obj))
         try:
             return WebDriverWait(self._driver, 15, 300).until(EC.invisibility_of_element_located(by_obj))
         except () as e:

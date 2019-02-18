@@ -31,8 +31,11 @@ class LoginPage(BasePage):
         logger.info("{} - init_elements".format(__name__))
         try:
             self.usr_input_field = self._driver.find_element(By.ID, "username")
+            logger.debug("{} -> usr_input_field : {}".format(__name__, self.usr_input_field))
             self.pwd_input_field = self._driver.find_element(By.ID, "password")
+            logger.debug("{} -> pwd_input_field : {}".format(__name__, self.pwd_input_field))
             self.submit_btn = self._driver.find_element(By.ID, "Login")
+            logger.debug("{} -> submit_btn : {}".format(__name__, self.submit_btn))
         except () as e:
             logger.error("{} - ERROR : {}".format(__name__, e))
             raise e

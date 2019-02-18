@@ -38,7 +38,7 @@ class BasePage(Wait):
         :param webelement -> WebElement Object
     '''
     def click(self, webelement):
-        logger.info("{} - click : {}".format(__name__, webelement))
+        logger.debug("{} - click : {}".format(__name__, webelement))
         try:
             webelement.click() if webelement.is_displayed() else WebDriverException("WebElement is not Clickable...")
         except (Exception, WebDriverException, StaleElementReferenceException) as e:
@@ -51,7 +51,7 @@ class BasePage(Wait):
         :param by_obj -> By Object
     '''
     def click_by(self, by_obj):
-        logger.info("{} - click : {}".format(__name__, by_obj))
+        logger.debug("{} - click : {}".format(__name__, by_obj))
         try:
             prxy = self.wait_until_visible(by_obj)
             prxy.click() if prxy.is_displayed() else WebDriverException("WebElement is not Clickable...")
@@ -66,7 +66,7 @@ class BasePage(Wait):
         :param phrase -> String Object
     '''
     def fill_text(self, webelement, pharse):
-        logger.info("{} - send_keys : {}, {} ".format(__name__, webelement, pharse))
+        logger.debug("{} - send_keys : {}, {} ".format(__name__, webelement, pharse))
         try:
             if webelement.is_displayed():
                 webelement.send_keys(pharse)
@@ -80,7 +80,7 @@ class BasePage(Wait):
         :return String Object
     '''
     def get_title(self):
-        logger.info("{} - get_title".format(__name__))
+        logger.debug("{} - get_title".format(__name__))
         try:
             return self._driver.title
         except (Exception, WebDriverException, StaleElementReferenceException) as e:
@@ -92,7 +92,7 @@ class BasePage(Wait):
         :return DocString Object
     '''
     def get_source_page(self):
-        logger.info("{} - get_source_page".format(__name__))
+        logger.debug("{} - get_source_page".format(__name__))
         try:
             return self._driver.source_page
         except (Exception, WebDriverException, StaleElementReferenceException) as e:
@@ -105,7 +105,7 @@ class BasePage(Wait):
         :param webelement -> WebElement Object
     '''
     def scroll_and_click(self, webelement):
-        logger.info("{} - scroll_and_click : {}".format(__name__, webelement))
+        logger.debug("{} - scroll_and_click : {}".format(__name__, webelement))
         try:
             action = ActionChains(self._driver)
             action.move_to_element(webelement) \
@@ -121,7 +121,7 @@ class BasePage(Wait):
         :param sec -> Integer Object
     '''
     def wait(self, sec):
-        logger.info("{} - wait : {}".format(__name__, sec))
+        logger.debug("{} - wait : {}".format(__name__, sec))
         try:
             time.sleep(sec)
         except Exception as e:

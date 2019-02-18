@@ -2,6 +2,7 @@
 from src.main.utils.Logger import Logger
 from src.test.base.BaseTest import BaseTest
 from src.main.base.pages.LoginPage import LoginPage
+from src.main.exceptions.PageException import PageException
 import unittest
 
 
@@ -27,21 +28,25 @@ class TestLoginPage(BaseTest, unittest.TestCase):
         :cvar -> This test scenario will simulate a valid login authentication
     '''
     def test_valid_attempt_to_authenticate(self):
-        st = self.timer()
+        try:
+            st = self.timer()
 
-        logger.debug("{} - test_valid_attempt_to_authenticate".format(__name__))
-        driver = self.driver
+            logger.debug("{} - test_valid_attempt_to_authenticate".format(__name__))
+            driver = self.driver
 
-        logger.info("{} - GET -> {}".format(__name__, self.URL))
-        driver.get(self.URL)
+            logger.info("{} - GET -> {}".format(__name__, self.URL))
+            driver.get(self.URL)
 
-        lp = LoginPage(driver)
-        msg_txt = lp.login(self.VALID_USERNAME, self.VALID_PASSWORD)
-        logger.debug("{} - AssertEquals -> expected: {} | actual: {}".format(__name__, self.ERROR_TXT_MSG, msg_txt))
-        self.assertEqual(self.ERROR_TXT_MSG, msg_txt)
+            lp = LoginPage(driver)
+            msg_txt = lp.login(self.VALID_USERNAME, self.VALID_PASSWORD)
+            logger.debug("{} - AssertEquals -> expected: {} | actual: {}".format(__name__, self.ERROR_TXT_MSG, msg_txt))
+            self.assertEqual(self.ERROR_TXT_MSG, msg_txt)
 
-        et = self.timer()
-        logger.debug("{} - test_valid_attempt_to_authenticate took {} seconds".format(__name__, et - st))
+            et = self.timer()
+            logger.debug("{} - test_valid_attempt_to_authenticate took {} seconds".format(__name__, et - st))
+        except PageException as e:
+            logger.warn("{} - WARNING : {}".format(__name__, e))
+            logger.error("{} - ERROR : {}".format(__name__, e))
 
     '''
         [Description]
@@ -49,21 +54,25 @@ class TestLoginPage(BaseTest, unittest.TestCase):
         :cvar -> This test scenario will simulate a valid login authentication
     '''
     def test_invalid_attempt_to_authenticate(self):
-        st = self.timer()
+        try:
+            st = self.timer()
 
-        logger.debug("{} - test_invalid_attempt_to_authenticate".format(__name__))
-        driver = self.driver
+            logger.debug("{} - test_invalid_attempt_to_authenticate".format(__name__))
+            driver = self.driver
 
-        logger.info("{} - GET -> {}".format(__name__, self.URL))
-        driver.get(self.URL)
+            logger.info("{} - GET -> {}".format(__name__, self.URL))
+            driver.get(self.URL)
 
-        lp = LoginPage(driver)
-        msg_txt = lp.login(self.INVALID_USERNAME, self.INVALID_PASSWORD)
-        logger.debug("{} - AssertEquals -> expected: {} | actual: {}".format(__name__, self.ERROR_TXT_MSG, msg_txt))
-        self.assertEqual(self.ERROR_TXT_MSG, msg_txt)
+            lp = LoginPage(driver)
+            msg_txt = lp.login(self.INVALID_USERNAME, self.INVALID_PASSWORD)
+            logger.debug("{} - AssertEquals -> expected: {} | actual: {}".format(__name__, self.ERROR_TXT_MSG, msg_txt))
+            self.assertEqual(self.ERROR_TXT_MSG, msg_txt)
 
-        et = self.timer()
-        logger.debug("{} - test_valid_attempt_to_authenticate took {} seconds".format(__name__, et - st))
+            et = self.timer()
+            logger.debug("{} - test_valid_attempt_to_authenticate took {} seconds".format(__name__, et - st))
+        except PageException as e:
+            logger.warn("{} - WARNING : {}".format(__name__, e))
+            logger.error("{} - ERROR : {}".format(__name__, e))
 
 
 if __name__ == '__main__':

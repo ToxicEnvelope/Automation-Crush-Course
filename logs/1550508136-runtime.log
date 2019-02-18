@@ -1,3 +1,0 @@
-2019-02-18 18:42:16,036 - src.test.base.BaseTest - INFO - src.test.base.BaseTest - setUp
-2019-02-18 18:42:17,508 - selenium.webdriver.remote.remote_connection - DEBUG - POST http://127.0.0.1:56580/session {"capabilities": {"firstMatch": [{}], "alwaysMatch": {"browserName": "chrome", "platformName": "any", "goog:chromeOptions": {"extensions": [], "args": []}}}, "desiredCapabilities": {"browserName": "chrome", "version": "", "platform": "ANY", "goog:chromeOptions": {"extensions": [], "args": []}}}
-2019-02-18 18:42:17,508 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): 127.0.0.1:56580
