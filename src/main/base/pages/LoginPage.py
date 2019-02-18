@@ -2,6 +2,7 @@
 from selenium.webdriver.common.by import By
 from src.main.base.BasePage import BasePage
 from src.main.base.locators.LoginPageLocators import LoginPageLocators
+from src.main.base.pages.RecoverPasswordPage import RecoverPasswordPage
 from src.main.utils.Logger import Logger
 
 class LoginPage(BasePage):
@@ -12,6 +13,7 @@ class LoginPage(BasePage):
     usr_input_field = None
     pwd_input_field = None
     submit_btn = None
+    forgot_my_pwd_link = None
 
     '''
         [Description]
@@ -36,7 +38,9 @@ class LoginPage(BasePage):
             logger.debug("{} -> pwd_input_field : {}".format(__name__, self.pwd_input_field))
             self.submit_btn = self._driver.find_element(By.ID, "Login")
             logger.debug("{} -> submit_btn : {}".format(__name__, self.submit_btn))
-        except () as e:
+            self.forgot_my_pwd_link = self._driver.find_element(By.ID, "forgot_password_link")
+            logger.debug("{} -> forgot_my_pwd_link : {}".format(__name__, self.forgot_my_pwd_link))
+        except Exception as e:
             logger.error("{} - ERROR : {}".format(__name__, e))
             raise e
 
@@ -60,3 +64,16 @@ class LoginPage(BasePage):
             logger.error("{} - ERROR : {}".format(__name__, e))
             raise e
 
+    '''
+        [Description]
+        recover_password    
+        :return self.msg.text -> String Object
+    '''
+    def recover_password(self):
+        logger.warn("{} - recover_password".format(__name__))
+        try:
+            self.click(self.forgot_my_pwd_link)
+            return RecoverPasswordPage(self._driver)
+        except Exception as e:
+            logger.error("{} - ERROR : {}".format(__name__, e))
+            raise e

@@ -16,10 +16,11 @@ class TestLoginPage(BaseTest, unittest.TestCase):
     INVALID_USERNAME = "yahav@automation.co.il"
     INVALID_PASSWORD = "password1"
 
-    ERROR_TXT_MSG = "Please check your username and password. If you still can't log in, contact your Salesforce administrator."
-
     VALID_USERNAME = "gal"
     VALID_PASSWORD = "Aa123456"
+
+    EXPECTED_ERR_MSG = \
+        "Please check your username and password. If you still can't log in, contact your Salesforce administrator."
 
 
     '''
@@ -39,8 +40,9 @@ class TestLoginPage(BaseTest, unittest.TestCase):
 
             lp = LoginPage(driver)
             msg_txt = lp.login(self.VALID_USERNAME, self.VALID_PASSWORD)
-            logger.debug("{} - AssertEquals -> expected: {} | actual: {}".format(__name__, self.ERROR_TXT_MSG, msg_txt))
-            self.assertEqual(self.ERROR_TXT_MSG, msg_txt)
+            logger.debug("{} - AssertEquals -> expected: {} | actual: {}".format(__name__, self.EXPECTED_ERR_MSG,
+                                                                                 msg_txt))
+            self.assertEqual(self.EXPECTED_ERR_MSG, msg_txt)
 
             et = self.timer()
             logger.debug("{} - test_valid_attempt_to_authenticate took {} seconds".format(__name__, et - st))
@@ -65,8 +67,9 @@ class TestLoginPage(BaseTest, unittest.TestCase):
 
             lp = LoginPage(driver)
             msg_txt = lp.login(self.INVALID_USERNAME, self.INVALID_PASSWORD)
-            logger.debug("{} - AssertEquals -> expected: {} | actual: {}".format(__name__, self.ERROR_TXT_MSG, msg_txt))
-            self.assertEqual(self.ERROR_TXT_MSG, msg_txt)
+            logger.debug("{} - AssertEquals -> expected: {} | actual: {}".format(__name__, self.EXPECTED_ERR_MSG,
+                                                                                 msg_txt))
+            self.assertEqual(self.EXPECTED_ERR_MSG, msg_txt)
 
             et = self.timer()
             logger.debug("{} - test_valid_attempt_to_authenticate took {} seconds".format(__name__, et - st))

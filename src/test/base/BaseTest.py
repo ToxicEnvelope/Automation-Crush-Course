@@ -40,6 +40,8 @@ class BaseTest:
     def timer():
         return int(time.time().__str__()[:10])
 
+    def get_driver(self):
+        return self.driver
 
 
 if __name__ == '__main__':
